@@ -6,7 +6,13 @@
 
 export function getClientWithGreatestBalance(array) {
   // Your code goes here...
-
+  let tempAcct = array[0]
+  for (let acct of array) {
+    if (acct.balance > tempAcct.balance) {
+      tempAcct = acct
+    }
+  }
+  return [tempAcct]
 }
 
 

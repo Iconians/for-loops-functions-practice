@@ -1,11 +1,22 @@
-
 // EXERCISE 3
 // Return the average value for the given array of numbers, f.i.
 // getAverage([22, 45, 4, 65]) => 34
 
 export function getAverage(array) {
   // Your code goes here...
-
+  let minNumber = array[0]
+  let maxNumber = array[0]
+  for (let num of array) {
+    if (num < minNumber) {
+      minNumber = num
+    }
+  }
+  for (let num of array) {
+    if (num > maxNumber) {
+      maxNumber = num
+    }
+  }
+  return (minNumber + maxNumber) / 2
 }
 
 
