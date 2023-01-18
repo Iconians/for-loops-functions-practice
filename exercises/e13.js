@@ -3,18 +3,23 @@
 // Array example: bankAccounts in /data/data.js
 // getAllAccountsWithSumsOfDepositsLess2000(bankAccounts) => [3432, 43242.34, 23432]
 
+const calcDeposits = (acct) => {
+  let tempSum = 0;
+  if (acct.deposits !== undefined) {
+    for (let depositAmounts of acct.deposits) {
+      let calc = depositAmounts + tempSum;
+      tempSum = calc;
+    }
+  }
+  return tempSum;
+};
+
 export function getAllAccountsWithSumsOfDepositsLess2000(array) {
   // Your code goes here...
   let totalDeposits = [];
   for (let acct of array) {
-    let tempSum = 0;
-    if (acct.deposits !== undefined) {
-      for (let depositAmounts of acct.deposits) {
-        let calc = depositAmounts + tempSum;
-        tempSum = calc;
-      }
-    }
-    if (tempSum < 2000) {
+    const deposits = calcDeposits(acct);
+    if (deposits < 2000) {
       totalDeposits.push(acct);
     }
   }

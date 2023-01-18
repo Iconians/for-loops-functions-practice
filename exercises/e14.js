@@ -4,8 +4,40 @@
 // Array example: bankAccounts in /data/data.js
 // getClientsWithWrongBalance(bankAccounts) => [{ name: 'Name1', balance: 32, ... }, { name: 'Name2', balance: 3523, ... }]
 
+const findDepositSum = (acct) => {
+  let tempDepositSum = 0;
+  if (acct.deposits !== undefined) {
+    for (let depositAmounts of acct.deposits) {
+      let calc = depositAmounts + tempDepositSum;
+      tempDepositSum = calc;
+    }
+  }
+  return tempDepositSum;
+};
+
+const findWithdrawalSum = (acct) => {
+  let tempWithdrawelSum = 0;
+  if (acct.withdrawals !== undefined) {
+    for (let withdrawalAmount of acct.withdrawals) {
+      let calc = withdrawalAmount + tempWithdrawelSum;
+      tempWithdrawelSum = calc;
+    }
+  }
+  return tempWithdrawelSum;
+};
+
 export function getClientsWithWrongBalance(array) {
   // Your code goes here...
+  if (array.length) {
+    for (let acct of array) {
+      const depositSum = findDepositSum(acct);
+      const withdrawalSum = findWithdrawalSum(acct);
+      if (depositSum - withdrawalSum !== acct.balance) {
+        return [acct];
+      }
+    }
+  }
+  return [];
 }
 
 // === TEST YOURSELF ===
